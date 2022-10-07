@@ -9,7 +9,7 @@ Recursive descent parsing is a parsing algorithm that parses LL-based grammars v
 
 # What's the issues of recursive descent parsing?
 Recursive descent parsing has some issues, the main issue of it is a lack of efficiency in performance and it not being able to handle left recursion. The issue with that is, is it can cause infinite recursion if not handled properly; an example of that would look like such:
-```bnf
+```ebnf
 <expr> ::= <add_or_sub>
 <add_or_sub> ::= <add_or_sub> ("+" | "-") <mul_or_div> | <mul_or_div>
 <mul_or_div> ::= <mul_or_div> ("*" | "/") <int> | <int>
