@@ -51,7 +51,7 @@ ast_node_t *add_or_sub(token_t **token_stream) {
 // You get the idea
 ```
 So how do we fix it? Well we refactor our grammar like such:
-```bnf
+```ebnf
 <expr> ::= <add_or_sub>
 <add_or_sub> ::= <mul_or_div> ("+" | "-") <add_or_sub> | <mul_or_div>
 <mul_or_div> ::= <int> ("*" | "/") <add_or_sub> | <int>
