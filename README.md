@@ -50,7 +50,23 @@ ast_node_t *add_or_sub(token_t **token_stream) {
 
 // You get the idea
 ```
+So how do we fix it? Well we refactor our grammar like such:
+```bnf
+<expr> ::= <add_or_sub>
+<add_or_sub> ::= <mul_or_div> ("+" | "-") <add_or_sub> | <mul_or_div>
+<mul_or_div> ::= <int> ("*" | "/") <add_or_sub> | <int>
+<int> ::= [0-9]+
+```
+we can see the result of the parser for this in ``/src/parser.c``.
 
 # Better algorithms:
+Some of the better algorithms more optimized for this is the infamous shunting yard algorithm, precedence climbing algorithm / pratt parsing (fucking G algorithm) which is used in clang's compiler for parsing and evaluating expressions. That and complex algorithms such as shift-reduction LR parsers or parser generators with LALR parsing tables. Even LL(1) table-driven predictive parsers are better for parsing expressions.
 
 # Resources for learning:
+https://bnfplayground.pauliankline.com/ - Good for testing context-free grammars.
+
+https://en.wikipedia.org/wiki/Recursive_descent_parser - Wikipedia article.
+
+https://www.engr.mun.ca/~theo/Misc/exp_parsing.htm - Good for parsing in general, goes over all of the previously mentioned algorithms.
+
+https://www.youtube.com/watch?v=SToUyjAsaFk - Good video for recursive descent parsing.
