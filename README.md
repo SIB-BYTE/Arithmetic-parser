@@ -62,10 +62,10 @@ So how do we fix it? Well we refactor our grammar like such:
 <mul_or_div> ::= <int> ("*" | "/") <add_or_sub> | <int>
 <int> ::= [0-9]+
 ```
-we can see the result of the parser for this in ``/src/parser.c``.
+We call this technique of grammar transformation: **left factoring**. We can see the result of the parser for this in ``/src/parser.c``.
 
 # Better algorithms:
-Some of the better algorithms more optimized for this is the infamous shunting yard algorithm, precedence climbing algorithm / pratt parsing (fucking G algorithm) which is used in clang's compiler for parsing and evaluating expressions. That and complex algorithms such as shift-reduction LR parsers or parser generators with LALR parsing tables. Even LL(1) table-driven predictive parsers are better for parsing expressions.
+Some of the better algorithms more optimized for this is the infamous shunting yard algorithm, precedence climbing algorithm / pratt parsing (fucking G algorithm) which is used in clang's compiler for parsing and evaluating expressions. That and complex algorithms such as shift-reduction LR parsers or parser generators with LALR(k) parsing tables. Even LL(1) table-driven parsers are better for parsing expressions.
 
 # Resources for learning:
 https://bnfplayground.pauliankline.com/ - Good for testing context-free grammars.
