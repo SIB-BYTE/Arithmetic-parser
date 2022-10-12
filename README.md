@@ -7,7 +7,9 @@ This is a basic arithmetic parser written in C, it utilizes recursive descent pa
 # Todo
 - [x] Allow for fully functional arithmetic evaluation.
 - [x] Allow for parentheses pair balancing.
-- [] Generate syntax errors.
+- [ ] Generate syntax errors.
+
+### Algorithm break down:
 
 # What is recursive descent parsing?
 Recursive descent parsing is a parsing algorithm that parses LL-based grammars via converting non-terminals into procedures that handle the terminal sequences in the grammar. It allows for backtracking which is seen as inefficient but we can perform certain translations to a given context-free grammar to make backtracking more avoidable, a translation / resolution technique you can do is left-factoring of a given grammar. It simply eliminates a starting terminal in a given non-terminal production rule to avoid backtracking but it's not needed.
