@@ -2,6 +2,7 @@
 #define PARSER_H
 
 #include "lexer.h"
+#include <stdbool.h>
 
 typedef struct _ast {
     token_t token;
@@ -26,8 +27,6 @@ ast_t *expr(token_t *),
 	  *unary(token_t **),
 	  *paren(token_t **),
 	  *integer(token_t **);
-
-
 
 #endif
 

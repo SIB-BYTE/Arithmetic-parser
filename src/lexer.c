@@ -44,7 +44,8 @@ const char *bind_token(token_t token) {
 		case DIV_OP:      return "(token: DIV_OP, lexeme: '/')";
 		case POWER_OF:    return "(token: POWER_OF, lexeme: '^')";
 		case LEFT_PAREN:  return "(token: LEFT_PAREN, lexeme: '(')";
-		case RIGHT_PAREN: return "(token: RIGHT_PAREN,lexeme: ')')";
+		case RIGHT_PAREN: return "(token: RIGHT_PAREN, lexeme: ')')";
+		case EOE:		  return "(token: EOE, lexeme: None)";
 		default:	      return NULL;
 	}
 }
@@ -73,6 +74,7 @@ long scan_number(const char *src, int *size) {
 
 // Lexical analysis function:
 lexer_t *tokenize(const char *src) {
+	LASSERT(src, "No expression given!\n");
 	lexer_t *tokens = new_lexer(strlen(src));
 
 	for(; *src; ++src) {
@@ -98,6 +100,7 @@ lexer_t *tokenize(const char *src) {
 		}
 	}
 
+	insert_token(tokens, (token_t) { .value = 0, .type = EOE });
 	return tokens;
 }
 

@@ -1,6 +1,6 @@
 #include "../includes/ast.h"
 
-// Recursive preorder display function:
+// Recursive post-order display function:
 void dump_ast(ast_t *root) {
     if(!root)
         return;
@@ -24,8 +24,8 @@ double evaluate_ast(ast_t *ast) {
         case SUB_OP:   return left - right;
         case MUL_OP:   return left * right;
         case DIV_OP:   return left / right;
-		case POWER_OF: return pow(left, right);
-		default:     return -1;
+		case POWER_OF: return pow(right, left);
+		default:       return -1;
 	}
 }
 

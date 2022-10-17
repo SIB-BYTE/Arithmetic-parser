@@ -40,6 +40,8 @@ typedef struct _token {
 		POWER_OF,
 		LEFT_PAREN,
 		RIGHT_PAREN,
+
+		EOE,
 	} type;
 
 	long value;
