@@ -8,7 +8,7 @@ void repl(void) {
 
 	for(;;) {
 		printf("Enter an expression: ");
-		fgets(buffer, sizeof(buffer), stdin);
+		LASSERT(fgets(buffer, sizeof(buffer), stdin), "Failed to read from stdin\n");
 
 		lexer_t *tokens = tokenize(buffer);
 
