@@ -16,7 +16,7 @@ double evaluate_ast(ast_t *ast) {
         return 0;
 
     double left = evaluate_ast(ast->left),
-		   right = evaluate_ast(ast->right);
+ 	  right = evaluate_ast(ast->right);
 
     switch(ast->token.type) {
         case INT:      return ast->token.value;
