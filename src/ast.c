@@ -24,9 +24,9 @@ double evaluate_ast(ast_t *ast) {
         case SUB_OP:   return left - right;
         case MUL_OP:   return left * right;
         case DIV_OP:   return left / right;
-		case POWER_OF: return pow(right, left);
-		default:       return -1;
-	}
+ 	case POWER_OF: return pow(right, left);
+	default:       return -1;
+    }
 }
 
 // Postorder destruction function:
