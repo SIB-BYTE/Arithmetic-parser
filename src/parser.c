@@ -43,8 +43,8 @@ ast_t *expr(token_t *token_stream) {
 
 // <add_sub>  ::= <mul_div>  ("+" | "-") <add_sub> | <mul_div>
 ast_t *add_sub(token_t **token_stream) {
-	ast_t *result = mul_div(token_stream);
-
+    ast_t *result = mul_div(token_stream);
+    
     if((*token_stream)->type == ADD_OP || (*token_stream)->type == SUB_OP) {
 	validate(*token_stream, EOE);
 
@@ -71,46 +71,46 @@ ast_t *mul_div(token_t **token_stream) {
 
 // <power_of> ::= <unary> "^" <power_of> | <unary>
 ast_t *power_of(token_t **token_stream) {
-	ast_t *result = unary(token_stream);
+    ast_t *result = unary(token_stream);
 
-	if((*token_stream)->type == POWER_OF) {
-		validate(*token_stream, EOE);
+    if((*token_stream)->type == POWER_OF) {
+	validate(*token_stream, EOE);
 
-		token_t token = *(*token_stream)++;
-		result = new_ast_node(token, power_of(token_stream), result);
-	}
+	token_t token = *(*token_stream)++;
+	result = new_ast_node(token, power_of(token_stream), result);
+    }
 
-	return result;
+    return result;
 }
 
 // <unary>    ::= "-" <unary> | <paren>
 ast_t *unary(token_t **token_stream) {
-	if((*token_stream)->type == SUB_OP) {
-		validate(*token_stream, EOE);
+    if((*token_stream)->type == SUB_OP) {
+	validate(*token_stream, EOE);
 
-		token_t token = *(*token_stream)++;
-		return new_ast_node(token, NULL, unary(token_stream));
-	}
+	token_t token = *(*token_stream)++;
+	return new_ast_node(token, NULL, unary(token_stream));
+     }
 
-	return paren(token_stream);
+    return paren(token_stream);
 }
 
 // <paren>    ::= "(" <expr> ")" | <int>
 ast_t *paren(token_t **token_stream) {
-	ast_t *result = NULL;
-	if((*token_stream)->type == LEFT_PAREN) {
-		(*token_stream)++;
+    ast_t *result = NULL;
+    if((*token_stream)->type == LEFT_PAREN) {
+	(*token_stream)++;
 
-		result = add_sub(token_stream);
-		(*token_stream)++;
+	result = add_sub(token_stream);
+	(*token_stream)++;
 
-		return result;
-	}
+	return result;
+    }
 
-	else if((*token_stream)->type == INT)
-		return integer(token_stream);
+    else if((*token_stream)->type == INT)
+	return integer(token_stream);
 
-	return NULL; // unreachable
+    return NULL; // unreachable
 }
 
 // <int>      ::= [0-9]+
