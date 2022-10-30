@@ -46,9 +46,9 @@ ast_t *add_sub(token_t **token_stream) {
 	ast_t *result = mul_div(token_stream);
 
     if((*token_stream)->type == ADD_OP || (*token_stream)->type == SUB_OP) {
-		validate(*token_stream, EOE);
+	validate(*token_stream, EOE);
 
-		token_t token = *(*token_stream)++;
+	token_t token = *(*token_stream)++;
         result = new_ast_node(token, result, add_sub(token_stream));
     }
 
@@ -60,9 +60,9 @@ ast_t *mul_div(token_t **token_stream) {
     ast_t *result = power_of(token_stream);
 
     if((*token_stream)->type == MUL_OP || (*token_stream)->type == DIV_OP) {
-		validate(*token_stream, EOE);
+	validate(*token_stream, EOE);
 
-		token_t token = *(*token_stream)++;
+	token_t token = *(*token_stream)++;
         result = new_ast_node(token, result, mul_div(token_stream));
     }
 
@@ -115,9 +115,8 @@ ast_t *paren(token_t **token_stream) {
 
 // <int>      ::= [0-9]+
 ast_t *integer(token_t **token_stream) {
-	validate(*token_stream, INT);
+    validate(*token_stream, INT);
 
     token_t token = *(*token_stream)++;
     return new_ast_node(token, NULL, NULL);
 }
-
