@@ -45,8 +45,8 @@ const char *bind_token(token_t token) {
 		case POWER_OF:    return "(token: POWER_OF, lexeme: '^')";
 		case LEFT_PAREN:  return "(token: LEFT_PAREN, lexeme: '(')";
 		case RIGHT_PAREN: return "(token: RIGHT_PAREN, lexeme: ')')";
-		case EOE:		  return "(token: EOE, lexeme: None)";
-		default:	      return NULL;
+		case EOE: 	  return "(token: EOE, lexeme: None)";
+		default:	  return NULL;
 	}
 }
 
@@ -81,13 +81,13 @@ lexer_t *tokenize(const char *src) {
 		switch(*src) {
 			case '\n': continue;
 			case ' ':  continue;
-			case '+': insert_token(tokens, (token_t) { .value = 0, .type = ADD_OP} );     break;
-			case '-': insert_token(tokens, (token_t) { .value = 0, .type = SUB_OP} );     break;
-			case '*': insert_token(tokens, (token_t) { .value = 0, .type = MUL_OP} );     break;
-			case '/': insert_token(tokens, (token_t) { .value = 0, .type = DIV_OP} );     break;
-			case '^': insert_token(tokens, (token_t) { .value = 0, .type = POWER_OF});    break;
-			case '(': insert_token(tokens, (token_t) { .value = 0, .type = LEFT_PAREN});  break;
-			case ')': insert_token(tokens, (token_t) { .value = 0, .type = RIGHT_PAREN}); break;
+			case '+':  insert_token(tokens, (token_t) { .value = 0, .type = ADD_OP} );     break;
+			case '-':  insert_token(tokens, (token_t) { .value = 0, .type = SUB_OP} );     break;
+			case '*':  insert_token(tokens, (token_t) { .value = 0, .type = MUL_OP} );     break;
+			case '/':  insert_token(tokens, (token_t) { .value = 0, .type = DIV_OP} );     break;
+			case '^':  insert_token(tokens, (token_t) { .value = 0, .type = POWER_OF});    break;
+			case '(':  insert_token(tokens, (token_t) { .value = 0, .type = LEFT_PAREN});  break;
+			case ')':  insert_token(tokens, (token_t) { .value = 0, .type = RIGHT_PAREN}); break;
 			case '0'...'9': {
 				int size = 0;
 				insert_token(tokens, (token_t) { .value = scan_number(src, &size), .type = INT });
@@ -109,4 +109,3 @@ void destroy_lexer(lexer_t *lexer) {
 	free(lexer->token_stream);
 	free(lexer);
 }
-
